@@ -1,0 +1,28 @@
+<h1>Welcome</h1>
+<div class="container">
+<div>
+Hi {{name}}.Welcome to our app
+</div>
+You can manage your todos <a routerLink="/todos">here</a>  
+
+
+</div>
+
+<div class="container">
+        Click here to get a message from spring
+        <button (click)="getWelcomeMessage()" class="btn btn-danger">Get welcome from spring</button>
+        
+        </div>
+
+
+        <div class="container" *ngIf="welcomeMessageFromService">
+        <h5>Message from spring</h5>
+       {{welcomeMessageFromService}}
+        
+        </div>
+
+        <div class="container" *ngIf="errorMessageFromSpring">
+                <h5>Error message from spring</h5>
+               {{errorMessageFromSpring}}
+                
+                </div>
