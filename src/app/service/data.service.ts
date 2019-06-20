@@ -15,6 +15,6 @@ export class DataService {
 
   executeDataService(){
     //Use generics to define what type of respond I am expecting back
-   return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean1');
+   return this.http.get<HelloWorldBean>('http://localhost:8090/hello-world-bean1');
   }
 }

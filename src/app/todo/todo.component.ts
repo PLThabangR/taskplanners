@@ -18,17 +18,24 @@ export class TodoComponent implements OnInit {
     //We are getting the Id from the user using the route parameter
     this.id = this.route.snapshot.params['id'];
 
-    //Creating a new object to initialize the
+    //Creating a new object to initialize the todo
     this.todo =new Todo(1,"",false,new Date())
-    //We are calling a todo service which was injected 
+   // We are calling a todo service which was injected 
     this.todoService.retrieveTodo('username', this.id)
     .subscribe(
       data=>this.todo =data
-    )
+   )
   }
 
   public save(){
     console.log("save works");
+
+    // //To save a todo we need to call a tode data service
+    // this.todoService.updateTodo('username', this.id,this.todo)
+    //       .subscribe(
+    //         //Return the data of the updated todo
+    //         data => console.log(data)
+    //       )
   }
 
 }
