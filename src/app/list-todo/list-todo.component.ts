@@ -28,7 +28,7 @@ export class ListTodoComponent implements OnInit {
   refreshTodo(){
     this.todoService.retrieveAllTodos("thabang").subscribe(
       response =>{
-       // console.log(response);
+       //console.log(response);
         this.todos =response;
   }
     )

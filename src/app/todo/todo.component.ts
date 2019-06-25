@@ -11,11 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class TodoComponent implements OnInit {
   id:number;
   todo:Todo;
+  //Auto wire the service in order to use it
   constructor(private todoService:TodoDataService,
               private route:ActivatedRoute) { }
 
   ngOnInit() {
-    //We are getting the Id from the user using the route parameter
+    //We are getting the Id from the user from the route parameter
     this.id = this.route.snapshot.params['id'];
 
     //Creating a new object to initialize the todo
@@ -23,19 +24,20 @@ export class TodoComponent implements OnInit {
    // We are calling a todo service which was injected 
     this.todoService.retrieveTodo('username', this.id)
     .subscribe(
-      data=>this.todo =data
+      //feed back from our request
+      data =>this.todo =data  
    )
   }
 
   public save(){
-    console.log("save works");
+    console.log("Update successfuly");
 
-    // //To save a todo we need to call a tode data service
-    // this.todoService.updateTodo('username', this.id,this.todo)
-    //       .subscribe(
-    //         //Return the data of the updated todo
-    //         data => console.log(data)
-    //       )
+    //To save a todo we need to call a tode data service
+    this.todoService.updateTodo('username', this.id,this.todo)
+          .subscribe(
+            //Return the data of the updated todo
+            data => console.log(data)
+          )
   }
 
 }
