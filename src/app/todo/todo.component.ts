@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Todo } from '../list-todo/list-todo.component';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -11,9 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class TodoComponent implements OnInit {
   id:number;
   todo:Todo;
+
   //Auto wire the service in order to use it
   constructor(private todoService:TodoDataService,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private router:Router
+              ) { }
 
   ngOnInit() {
     //We are getting the Id from the user from the route parameter
@@ -36,7 +39,8 @@ export class TodoComponent implements OnInit {
     this.todoService.updateTodo('username', this.id,this.todo)
           .subscribe(
             //Return the data of the updated todo
-            data => console.log(data)
+            data => {console.log(data)
+            this.router.navigate(['todos'])}
           )
   }
 
