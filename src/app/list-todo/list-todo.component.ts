@@ -50,4 +50,8 @@ export class ListTodoComponent implements OnInit {
     this.router.navigate(['todo',id])
   }
 
+  addTodo(){
+    //If todo is -1 one it will help us to understand that the user is trying to add a new todo
+    this.router.navigate(['todo',-1])
+  }
 }

@@ -23,19 +23,31 @@ export class TodoComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     //Creating a new object to initialize the todo
-    this.todo =new Todo(1,"",false,new Date())
+    //we are referencing the this.id
+    this.todo =new Todo(this.id,"",false,new Date())
+    if(this.id!=-1){ //This retrieve will only run if the id is not eqauls -1
    // We are calling a todo service which was injected 
     this.todoService.retrieveTodo('username', this.id)
     .subscribe(
       //feed back from our request
       data =>this.todo =data  
    )
+    }
   }
 
   public save(){
     console.log("Update successfuly");
-
-    //To save a todo we need to call a tode data service
+    if(this.id===-1){ //This save will only run if the id is eqauls -1
+      //If the id is minus one we need to call create 
+//To create a todo we need to call a tode data service 
+this.todoService.createTodo('username',this.todo)
+.subscribe(
+  //Return the data of the updated todo
+  data => {console.log(data)
+  this.router.navigate(['todos'])}
+)
+    }else{ // this will run if the todo id is not equals to -1
+    //To save a todo we need to call a tode data service 
     this.todoService.updateTodo('username', this.id,this.todo)
           .subscribe(
             //Return the data of the updated todo
@@ -43,5 +55,7 @@ export class TodoComponent implements OnInit {
             this.router.navigate(['todos'])}
           )
   }
+
+}
 
 }

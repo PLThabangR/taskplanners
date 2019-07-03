@@ -34,5 +34,13 @@ export class TodoDataService {
   }
 
   
+//we need to add a third parameter for the details of the todo to be updtated
+createTodo(username ,todo){
+  //We need to pass a body as we did in the restlet
+  //Since we are posting we use a post request
+  return this.http.post<Todo>(`http://localhost:8090/users/${username}/todos`,todo);
+ 
+}
+  
 }
 
