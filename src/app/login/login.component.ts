@@ -4,6 +4,7 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { HardcodedAuthService } from '../service/hardcoded-auth.service';
+import { BasicAuthService } from '../service/http/basic-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
  validLogin :boolean=false
  //Use dependency injection in the constructor to 
  //make a router a member variable login component ts
-  constructor(private router:Router,private hardcodedAuthService:HardcodedAuthService) { }
+  constructor(private router:Router,private hardcodedAuthService:HardcodedAuthService
+    ,private basicAuthdervice :BasicAuthService) { }
 
   ngOnInit() {
   }
@@ -37,5 +39,32 @@ if(this.hardcodedAuthService.authenticate(this.username,this.password))
   this.validLogin=false
 }
 }
+
+handleLBasicAuth(){
+  
+  this.basicAuthdervice.executeAuthenticationService(this.username,this.password)
+        .subscribe(
+          response=> {
+            console.log(response)
+            this.invalidLogin=false
+            this.router.navigate(['welcome',this.username])
+          
+          
+          },
+          error =>{
+            console.log(error)
+            this.invalidLogin=true
+
+          }
+
+
+
+            
+        )
+ 
+ 
+ 
+  
+  }
 
 }
