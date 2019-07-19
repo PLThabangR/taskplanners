@@ -18,7 +18,7 @@ export class BasicAuthService {
    
   //window.btoa is provided by the java script
   //We need to send this as part of the headers
-      let basicAuthHeader = 'Basic' +  window.btoa(username + ':'+password); //Use window.btoa to incode auth 
+      let basicAuthHeader = 'Basic ' +  window.btoa(username + ':'+password); //Use window.btoa to incode auth 
 
      
       let headers = new HttpHeaders({
