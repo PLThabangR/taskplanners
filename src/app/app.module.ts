@@ -33,7 +33,7 @@ import { HttpIntercepterService } from './service/http/http-intercepter.service'
       HttpClientModule
    ],
    providers: [
-      // {provide: HTTP_INTERCEPTORS,useClass:HttpIntercepterService,multi:true}
+      {provide: HTTP_INTERCEPTORS,useClass:HttpIntercepterService,multi:true}
    ],
    bootstrap: [
       AppComponent
