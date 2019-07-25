@@ -36,11 +36,12 @@ export class TodoComponent implements OnInit {
   }
 
   public save(){
-    console.log("Update successfuly");
-    if(this.id===-1){ //This save will only run if the id is eqauls -1
+     if(this.id==-1){ //This save will only run if the id is eqauls -1 and we use === to compare objects while == compare primitives
       //If the id is minus one we need to call create 
 //To create a todo we need to call a tode data service 
+console.log('username')
 this.todoService.createTodo('username',this.todo)
+
 .subscribe(
   //Return the data of the updated todo
   data => {console.log(data)
